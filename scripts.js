@@ -38,11 +38,21 @@ document.addEventListener("DOMContentLoaded", () => {
 			"click",
 			() => (div.style.backgroundColor = randomColor())
 		);
-		div.addEventListener("dblclick", () => {
-			if (div.id % 2 === 0) {
-				document.getElementById(parseInt(div.id) + 1).remove();
+		div.addEventListener("dblclick", function () {
+			if (this.id % 2 === 0) {
+				// Even
+				if (this.nextElementSibling) {
+					this.nextElementSibling.remove();
+				} else {
+					alert("No next square to remove!");
+				}
 			} else {
-				document.getElementById(parseInt(div.id) - 1).remove();
+				// Odd
+				if (this.previousElementSibling) {
+					this.previousElementSibling.remove();
+				} else {
+					alert("No previous square to remove!");
+				}
 			}
 		});
 		//Add listener to display the number within the square when the mouse enters
